@@ -1,0 +1,5 @@
+
+State Machine - |led|SPI_16bit:u_SPI_16bit|state
+Name state.001 
+state.000 0 
+state.001 1 

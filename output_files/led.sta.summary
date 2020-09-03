@@ -1,0 +1,113 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'clk_in'
+Slack : -3.344
+TNS   : -121.995
+
+Type  : Slow 1200mV 85C Model Setup 'clk_div_3us:u_clk_div_3us|clk_out'
+Slack : -2.559
+TNS   : -78.267
+
+Type  : Slow 1200mV 85C Model Setup 'SPI_16bit:u_SPI_16bit|rx_flag'
+Slack : -0.863
+TNS   : -0.863
+
+Type  : Slow 1200mV 85C Model Hold 'clk_div_3us:u_clk_div_3us|clk_out'
+Slack : -0.097
+TNS   : -0.097
+
+Type  : Slow 1200mV 85C Model Hold 'clk_in'
+Slack : 0.360
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'SPI_16bit:u_SPI_16bit|rx_flag'
+Slack : 1.427
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk_in'
+Slack : -3.000
+TNS   : -114.525
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk_div_3us:u_clk_div_3us|clk_out'
+Slack : -1.487
+TNS   : -53.532
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'SPI_16bit:u_SPI_16bit|rx_flag'
+Slack : -1.487
+TNS   : -1.487
+
+Type  : Slow 1200mV 0C Model Setup 'clk_in'
+Slack : -3.164
+TNS   : -110.311
+
+Type  : Slow 1200mV 0C Model Setup 'clk_div_3us:u_clk_div_3us|clk_out'
+Slack : -2.385
+TNS   : -71.464
+
+Type  : Slow 1200mV 0C Model Setup 'SPI_16bit:u_SPI_16bit|rx_flag'
+Slack : -0.745
+TNS   : -0.745
+
+Type  : Slow 1200mV 0C Model Hold 'clk_div_3us:u_clk_div_3us|clk_out'
+Slack : -0.035
+TNS   : -0.035
+
+Type  : Slow 1200mV 0C Model Hold 'clk_in'
+Slack : 0.322
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'SPI_16bit:u_SPI_16bit|rx_flag'
+Slack : 1.313
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk_in'
+Slack : -3.000
+TNS   : -114.525
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk_div_3us:u_clk_div_3us|clk_out'
+Slack : -1.487
+TNS   : -53.532
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'SPI_16bit:u_SPI_16bit|rx_flag'
+Slack : -1.487
+TNS   : -1.487
+
+Type  : Fast 1200mV 0C Model Setup 'clk_in'
+Slack : -0.803
+TNS   : -15.069
+
+Type  : Fast 1200mV 0C Model Setup 'clk_div_3us:u_clk_div_3us|clk_out'
+Slack : -0.460
+TNS   : -10.047
+
+Type  : Fast 1200mV 0C Model Setup 'SPI_16bit:u_SPI_16bit|rx_flag'
+Slack : 0.330
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'clk_div_3us:u_clk_div_3us|clk_out'
+Slack : -0.169
+TNS   : -0.169
+
+Type  : Fast 1200mV 0C Model Hold 'clk_in'
+Slack : 0.150
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'SPI_16bit:u_SPI_16bit|rx_flag'
+Slack : 0.537
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk_in'
+Slack : -3.000
+TNS   : -90.696
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk_div_3us:u_clk_div_3us|clk_out'
+Slack : -1.000
+TNS   : -36.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'SPI_16bit:u_SPI_16bit|rx_flag'
+Slack : -1.000
+TNS   : -1.000
+
+------------------------------------------------------------
