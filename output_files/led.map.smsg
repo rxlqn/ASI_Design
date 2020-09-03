@@ -1,2 +1,0 @@
-Warning (10268): Verilog HDL information at SPI.v(48): always construct contains both blocking and non-blocking assignments File: T:/FPGA/STEP-MAX10/manchester_SPI_9_3/SPI.v Line: 48
-Warning (10268): Verilog HDL information at spi_16bit.v(48): always construct contains both blocking and non-blocking assignments File: T:/FPGA/STEP-MAX10/manchester_SPI_9_3/spi_16bit.v Line: 48
