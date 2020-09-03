@@ -10,3 +10,4 @@ data/
 _build/
 db/
 output_files/
+incremental_db/
