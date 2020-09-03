@@ -2,22 +2,33 @@ module man_coding_master(
            input wire	clk_in,
            input wire	rst,
            input wire	rx_flag,
-           input wire [15: 0] rx_data,       // [buf1,buf2]
+           input wire [15: 0] rx_data,          // [buf1,buf2]
            input wire clk_3us,
 
            output reg code
 
        );
 
-wire [13: 0]tx_buf; // 主站请求14bit
+reg [13: 0]tx_buf;  // 主站请求14bit
 wire [27: 0]data;   // 编码后的数据28bit
-
+reg PB;
 
 reg [27: 0]data_buf;
-reg PB = 1'b0;     // todo奇偶校验
+// reg PB = 1'b0;     // todo奇偶校验
+
+reg [11: 0]temp;
 
 
-assign tx_buf = {rx_data[14: 8], rx_data[4: 0], PB, 1'b1};
+always@(posedge clk_in)
+begin
+    temp = {rx_data[14: 8], rx_data[4: 0]};  //前12bit
+    PB = ^ temp;     //  奇偶校验 保证除最后一位之和为偶数
+    tx_buf = {temp, PB, 1'b1};
+end
+
+//assign tx_buf = {temp, PB, 1'b1};
+
+
 // assign tx_buf[7:0] = {rx_data[15:8]};
 
 assign data[1: 0] = (tx_buf[0]) ? 2'b01 : 2'b10;
