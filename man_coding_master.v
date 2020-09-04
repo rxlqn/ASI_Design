@@ -2,7 +2,7 @@ module man_coding_master(
            input wire	clk_in,
            input wire	rst,
            input wire	rx_flag,
-           input wire [15: 0] rx_data,          // [buf1,buf2]
+           input wire [15: 0] rx_data,           // [buf1,buf2]
            input wire clk_3us,
 
            output reg code
@@ -51,7 +51,12 @@ reg [3: 0] state = 0;
 
 always@(posedge rx_flag)
 begin
+    // // 起始位为1为无效
+    // if(tx_buf[13] != 1)
+    // begin
     state = ~state;
+
+    // end
 end
 
 reg [1: 0]state_tmp = 0;

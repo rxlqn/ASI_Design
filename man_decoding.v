@@ -10,6 +10,9 @@ module man_decoding(
 
 reg [13: 0]rx_buf;
 
+// 定义曼码接收长度
+parameter rx_len = 14; 
+
 
 
 reg manchester_neg = 0;
@@ -55,10 +58,14 @@ begin
 
         1:
         begin
-            if (cnt > 1200)       // 超时   18 3us   18*28-1  18*30
+            if (cnt > 1200)       // 超时   100us超时跳转状态
             begin
                 state = 2;
             end
+				if (num == rx_len)			 // 存满数据跳转状态
+				begin
+					state =2;
+				end
         end
 
         2:                               // 解码结束
@@ -84,14 +91,14 @@ begin
         begin
             if (cnt_bit == 72)       // 6us 采样一次
             begin
-                if (num < 14)          // 接收14bit曼码
+                if (num < rx_len)          // 接收14bit曼码
                 begin
                     rx_buf = rx_buf << 1;
 
                     rx_buf[0] = manchester;
                     cnt_bit = 0;
                     num = num + 1;
-                    test = ~test;
+                    test = ~test;		// 采样点测试
                 end
             end
             else
@@ -105,7 +112,7 @@ begin
         begin
             cnt_bit = 72;
             num = 0;
-            code[14: 8] = rx_buf[13: 7];			// 拆分数据给SPI
+            code[14: 8] = rx_buf[13: 7];			// 拆分数据给SPI，rxbuf中存放解码后的数据
             code[4: 0] = rx_buf[6: 2];
         end
 

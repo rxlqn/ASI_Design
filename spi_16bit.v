@@ -92,7 +92,11 @@ begin
         cnt_neg = 0;   // 清空计数器
         rx_data <= rx_buf;
         state = 0;    // 进入空闲状态
-        rx_flag <= 1;   // cs拉高时接收完成
+        if(rx_buf[15] != 1)     // 最高位为1时 主站只接收数据，不发送数据，所以不置位rx_flag从而不发送曼码
+        begin
+            rx_flag <= 1;   // cs拉高时接收完成
+
+        end
 
     end
 
