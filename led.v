@@ -21,7 +21,9 @@ module led(
            input wire SPI_MOSI,
            input wire SPI_CS,
            input wire SPI_SCLK,
+//           input wire manchester,
            output wire SPI_MISO,
+           output wire test,
            output wire man_code
        );
 
@@ -29,8 +31,7 @@ wire [0: 15]rx_data;
 wire [0: 15]tx_data;
 wire clk_3us;
 
-assign tx_data = rx_data;
-assign tx_data = rx_data;
+// assign tx_data = rx_data;
 
 
 // // SPI
@@ -80,6 +81,14 @@ man_coding_master u_man_coding_master(
     .code    (man_code    )
 );
 
+// manchester decoding
+man_decoding u_man_decoding(
+	.clk_in     (clk_in     ),
+    .rst        (rst        ),
+    .manchester (man_code ),
+    .test(test),
+    .code       (tx_data       )
+);
 
 
 // man_coding u_man_coding(
