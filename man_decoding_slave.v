@@ -1,4 +1,4 @@
-module man_decoding(
+module man_decoding_slave(
            input wire	clk_in,
            input wire	rst,
            //    input wire	clk_3us,
@@ -11,7 +11,7 @@ module man_decoding(
 reg [13: 0]rx_buf;
 
 // 定义曼码接收长度
-parameter rx_len = 14; 
+parameter rx_len = 7; 
 
 
 
@@ -112,8 +112,9 @@ begin
         begin
             cnt_bit = 72;
             num = 0;
-            code[14: 8] = rx_buf[13: 7];			// 拆分数据给SPI，rxbuf中存放解码后的数据
-            code[4: 0] = rx_buf[6: 2];
+            code[3: 0] = rx_buf[3: 0];      // 拆分数据给SPI，rxbuf中存放解码后的数据
+            // 从站接收解码只有4bit有效数据
+            // todo PB
         end
 
     endcase
