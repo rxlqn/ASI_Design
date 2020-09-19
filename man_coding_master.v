@@ -49,7 +49,7 @@ assign data[27: 26] = (tx_buf[13]) ? 2'b01 : 2'b10;
 
 reg [3: 0] state = 0;
 
-always@(posedge rx_flag)
+always@(posedge rx_flag)        // 记录rx_flag上升沿
 begin
     // // 起始位为1为无效
     // if(tx_buf[13] != 1)

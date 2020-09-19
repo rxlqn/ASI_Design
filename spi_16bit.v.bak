@@ -32,6 +32,31 @@ reg [2: 0] SPI_cs_r = 0;
 
 reg [4: 0]cnt_neg = 0;
 
+
+reg [3: 0] flag_state = 0;
+
+always@(posedge decoding_flag)        // 记录decoding_flag上升沿
+begin
+
+    flag_state = ~flag_state;
+
+end
+
+reg [1: 0]state_tmp = 0;
+
+always@(posedge clk_3us)
+begin
+    state_tmp[1] = state_tmp[0];
+    state_tmp[0] = flag_state;
+
+    if (state_tmp[0] ^ state_tmp[1])		// 又来了上升沿
+    begin
+        tx_buf = tx_data;
+   
+    end
+end
+
+
 always@(posedge clk_in)   // 打两拍捕获cs上升下降沿
 begin
     SPI_cs_r	<= {SPI_cs_r[1: 0], SPI_CS};
@@ -47,28 +72,8 @@ begin
     SPI_SCLK_pos	<= (~SPI_SCLK_r[2]) & SPI_SCLK_r[1];
 end
 
-
-reg [3: 0] flag_state = 0;
-
-always@(posedge decoding_flag)        // 记录decoding_flag上升沿
-begin
-    flag_state = ~flag_state;
-end
-
-reg [1: 0]state_tmp = 0;
-
 always@(posedge clk_in)   // 模式3，下降沿采样
 begin
-    
-    // 处理tx_buf中的数据
-    state_tmp[1] = state_tmp[0];
-    state_tmp[0] = flag_state;
-
-    if (state_tmp[0] ^ state_tmp[1])		// 又来了上升沿
-    begin
-        tx_buf <= tx_data;
-    end
-
 
     if (SPI_cs_neg)     // 开始通信
     begin
@@ -77,7 +82,7 @@ begin
 
         // tx_buf <= tx_data;
 
-
+        
         //   tx_buf<=rx_data;   // 回环测试
         rx_buf <= 0;    // 清空缓冲区
         rx_flag <= 0;

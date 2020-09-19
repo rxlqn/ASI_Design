@@ -4,7 +4,8 @@ module man_decoding_slave(
            //    input wire	clk_3us,
            input wire manchester,
            output reg test,
-           output reg[15: 0] code
+           output reg[15: 0] code,
+           output reg decoding_flag
 
        );
 
@@ -53,6 +54,7 @@ begin
             if (manchester_neg | manchester_pos)
             begin
                 state = 1;      // 开始解码
+                decoding_flag = 0;
             end
         end
 
@@ -71,6 +73,8 @@ begin
         2:                               // 解码结束
         begin
             state = 0;
+            decoding_flag = 1;          // 产生上升沿
+
         end
     endcase
 end
@@ -112,7 +116,7 @@ begin
         begin
             cnt_bit = 72;
             num = 0;
-            code[3: 0] = rx_buf[3: 0];      // 拆分数据给SPI，rxbuf中存放解码后的数据
+            code[6: 0] = ~ rx_buf[6: 0];      // 拆分数据给SPI，rxbuf中存放解码后的数据
             // 从站接收解码只有4bit有效数据
             // todo PB
         end

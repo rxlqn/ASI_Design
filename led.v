@@ -21,16 +21,16 @@ module led(
            input wire SPI_MOSI,
            input wire SPI_CS,
            input wire SPI_SCLK,
-           input wire manchester,
+           input wire manchester,		// 16
            output wire SPI_MISO,
            output wire test,
-           output wire man_code
+           output wire man_code			// 17
        );
 
 wire [0: 15]rx_data;
 wire [0: 15]tx_data;
 wire clk_3us;
-
+wire decoding_flag;
 // assign tx_data = rx_data;
 
 
@@ -47,18 +47,19 @@ wire clk_3us;
 //     .rx_flag  (rx_flag  )
 // );
 // SPI 16bit
-SPI_16bit u_SPI_16bit(
-	.clk_in   (clk_in   ),
-    .rst      (rst      ),
-    .SPI_MOSI (SPI_MOSI ),
-    .SPI_CS   (SPI_CS   ),
-    .SPI_SCLK (SPI_SCLK ),
-    .tx_data  (tx_data  ),
-    .SPI_MISO (SPI_MISO ),
-    .rx_data  (rx_data  ),
-    .rx_flag  (rx_flag  )
-);
 
+SPI_16bit u_SPI_16bit(
+	.clk_in        (clk_in        ),
+    .rst           (rst           ),
+    .SPI_MOSI      (SPI_MOSI      ),
+    .SPI_CS        (SPI_CS        ),
+    .SPI_SCLK      (SPI_SCLK      ),
+    .tx_data       (tx_data       ),
+    .decoding_flag (decoding_flag ),
+    .SPI_MISO      (SPI_MISO      ),
+    .rx_data       (rx_data       ),
+    .rx_flag       (rx_flag       )
+);
 
 
 
@@ -87,7 +88,9 @@ man_decoding_slave u_man_decoding_slave(
     .rst        (rst        ),
     .manchester (manchester ),
     .test       (test       ),
-    .code       (tx_data       )
+    .code       (tx_data    ),
+    .decoding_flag (decoding_flag )
+
 );
 
 
